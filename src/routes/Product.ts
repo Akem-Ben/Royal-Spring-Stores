@@ -1,6 +1,10 @@
 import express, {Request, Response} from 'express'
-import { auth } from '../middleware/auth'
-import { upload } from '../Utils/multer'
+import { getAllHomeProducts } from '../handlers/adminHandlers'
+import { adminAuth } from '../middleware/auth'
+import { upload } from '../utils/multer'
 
 const router = express.Router()
+
+router.get('/', getAllHomeProducts )
+
 export default router

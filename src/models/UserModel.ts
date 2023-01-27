@@ -7,7 +7,7 @@ export interface IUser {
     email: string,
     password: string,
     salt: string,
-    role: boolean
+    role: string
 }
 
 const userSchema = new Schema({
@@ -28,7 +28,7 @@ const userSchema = new Schema({
         type: String
     },
     role: {
-        type: Boolean
+        type: String
     },
 },
 {
@@ -36,5 +36,9 @@ const userSchema = new Schema({
 })
 
 const User = mongoose.model<IUser>('Users', userSchema)
+
+// userSchema.hasMany(orderSchema, {foreignKey:'userId', as:'food'})
+
+// FoodInstance.belongsTo(VendorInstance, {foreignKey:'vendorId', as:'vendor'})
 
 export default User

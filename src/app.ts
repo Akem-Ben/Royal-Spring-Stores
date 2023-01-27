@@ -5,8 +5,8 @@ import path from 'path'
 import cookieParser from 'cookie-parser'
 import {connectDatabase} from './config/database'
 import UserRoutes from './routes/User'
-import OrderRoutes from './routes/Order'
 import ProductRoutes from './routes/Product'
+import AdminRoutes from './routes/Admin'
 import cors from 'cors'
 
 const app = express()
@@ -26,8 +26,8 @@ app.use(express.static(path.join(process.cwd(),'./public')))
 
 //Routes
 app.use('/users', UserRoutes)
-app.use('/order', OrderRoutes)
 app.use('/product', ProductRoutes)
+app.use('/admin', AdminRoutes)
 
 app.listen(process.env.PORT,()=>{
 console.log(`App paying attention on port ${process.env.PORT}`)
