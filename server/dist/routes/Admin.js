@@ -1,0 +1,24 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const auth_1 = require("../middleware/auth");
+const multer_1 = require("../utils/multer");
+const adminHandlers_1 = require("../handlers/adminHandlers");
+const router = express_1.default.Router();
+router.post('/superadmin', adminHandlers_1.CreateSuperadmin);
+router.post('/create-admin', auth_1.adminAuth, adminHandlers_1.CreateAdmin);
+router.post('/admin-login', adminHandlers_1.adminLogin);
+router.post('/create-product', auth_1.adminAuth, multer_1.upload.single('image'), adminHandlers_1.CreateProduct);
+router.get('/get-all-products', auth_1.adminAuth, adminHandlers_1.getAllProducts);
+router.get('/getProduct/:_id', auth_1.adminAuth, adminHandlers_1.getsingleProduct);
+router.patch('/update-product/:_id', auth_1.adminAuth, multer_1.upload.single('image'), adminHandlers_1.updateProduct);
+router.delete('/delete-product/:_id', auth_1.adminAuth, adminHandlers_1.deleteProduct);
+router.get('/get-all-users', auth_1.adminAuth, adminHandlers_1.getAllUsers);
+router.get('/get-user/:_id', auth_1.adminAuth, adminHandlers_1.getSingleUser);
+router.get('/get-all-orders', auth_1.adminAuth, adminHandlers_1.adminGetAllOrders);
+router.get('/get-user-orders/:id', auth_1.adminAuth, adminHandlers_1.adminGetAllUserOrders);
+router.get('/get-single-order/:id', auth_1.adminAuth, adminHandlers_1.adminGetSingleOrder);
+exports.default = router;
